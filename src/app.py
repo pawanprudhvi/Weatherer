@@ -12,10 +12,10 @@ load_dotenv()
 app = FastAPI()
 
 # Redis connection
-r = redis.Redis(
-    host="localhost",
-    port=6379,
-    decode_responses=True
+r = redis.from_url(
+    os.getenv("REDIS_URL"),
+    decode_responses=True,
+    ssl_cert_reqs=None
 )
 
 app.add_middleware(
